@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace Tetris
 {
-    //Вроде все работает
+    
     public partial class TetrisForm : Form
     {     
         //Width и height Это количество клеток, которое вмещает в себя поле
@@ -13,14 +14,15 @@ namespace Tetris
         // Надо еще раз подумать над тем, как реализовать фигуру, возможно как то получиться улучшить
         // Массив для хранения падающей фигурки (для каждого блока 2 координаты [0, i] и [1, i]
         public int[,] figure = new int[2, 4];
-        public int[,] field = new int[width, height];// Массив для хранения поля
+        public int[,] field = new int[width, height]; // Массив для хранения поля
         public Bitmap background = new Bitmap(cellSize * (width + 1) + 1, cellSize * (height + 3) +1);
+        public GameModel gameModel = new GameModel();
 
         //Остается тут
         public TetrisForm()
         {
             InitializeComponent();            
-            SetShape();
+            figure = gameModel.CreateFigure();
         }
 
         //ЭТО ЧИСТО ОТРИСОВКА. ТУТ НЕЧЕГО МЕНЯТЬ.
@@ -102,33 +104,14 @@ namespace Tetris
             }
         }
 
-        //Скорее всего вынести в модель
-        public void SetShape()
-        {
-            //Так и не понял зачем DateTime.Now.Millisecond. Работает без него
-            Random x = new Random(); 
-            switch (x.Next(7)) // Рандомно выбираем 1 из 7 возможных фигур
-            //ЗАККОМЕНТИ НАЗВАНИЯ ФИгур, где какая
-            {
-                case 0: figure = new int[,] { { 2, 3, 4, 5 }, { 8, 8, 8, 8 } }; break;
-                case 1: figure = new int[,] { { 2, 3, 2, 3 }, { 8, 8, 9, 9 } }; break;
-                case 2: figure = new int[,] { { 2, 3, 4, 4 }, { 8, 8, 8, 9 } }; break;
-                case 3: figure = new int[,] { { 2, 3, 4, 4 }, { 8, 8, 8, 7 } }; break;
-                case 4: figure = new int[,] { { 3, 3, 4, 4 }, { 7, 8, 8, 9 } }; break;
-                case 5: figure = new int[,] { { 3, 3, 4, 4 }, { 9, 8, 8, 7 } }; break;
-                case 6: figure = new int[,] { { 3, 4, 4, 4 }, { 8, 7, 8, 9 } }; break;
-            }
-        }
-
         //TickTimer.Interval - скорость падения при отжатой клавише
         //Вроде можно тут оставить?
         private void Form1_KeyUp(object sender, KeyEventArgs e) => TickTimer.Interval = 250;
    
         //По стандарту падает только вниз, т.е скорость (0,1)
         //Возможно вынести в модель?
-        public void Move(int xSpeed, int ySpeed)
-        {
-         
+        public new void Move(int xSpeed, int ySpeed)
+        {        
             //Опиши подробней, как проходит смещение фигуры вниз?
             //Не совсем понимаю Что тут меняется из-за индексов 1 и 0
 
@@ -149,7 +132,7 @@ namespace Tetris
                 {
                     for (int i = 0; i < 4; i++)
                         field[figure[1, i], figure[0, i]]++;
-                    SetShape(); 
+                    figure = gameModel.CreateFigure(); 
                 }
             }
             //Перерисовка поля
@@ -158,28 +141,14 @@ namespace Tetris
 
         public bool FindMistake()
         {
-            for (int i = 0; i < 4; i++)
-                if (figure[1, i] >= width || figure[0, i]
-                >= height || figure[1, i] <= 0 || figure[0, i]
-                <= 0 || field[figure[1, i], figure[0, i]] == 1)
+            for (int i = 0; i < 4; i++)            
+                if (figure[1, i] >= width
+                    || figure[0, i] >= height
+                    || figure[1, i] <= 0
+                    || figure[0, i] <= 0
+                    || field[figure[1, i], figure[0, i]] == 1)
                     return true;
             return false;
         }
-
-        //public bool FindMistake()
-        //{
-        //    //Потому что все фигуры состоят из 4 клеток
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        //Проверка на выход за границы игрового поля
-        //        //ЧТО ПРОВЕРЯЕТ secondCondition?
-        //        //Тут поменял немного условия проверки на границах
-        //        bool firstCondition = figure[1, i] == width || figure[0, i] == height;
-        //        bool secondCondition = figure[1, i] == 0 || field[figure[1, i], figure[0, i]] == 1;             
-        //        if (firstCondition || secondCondition)
-        //            return true;
-        //    }
-        //    return false;
-        //}
     }
 }
