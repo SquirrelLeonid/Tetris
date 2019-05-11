@@ -29,3 +29,13 @@ C:\Users\Марсель\Desktop\LittleTetris\LittleTetris\LittleTetris\obj\Debug
 C:\Users\Марсель\Desktop\LittleTetris\LittleTetris\LittleTetris\obj\Debug\LittleTetris.exe
 C:\Users\Марсель\Desktop\LittleTetris\LittleTetris\LittleTetris\obj\Debug\LittleTetris.pdb
 C:\Users\Марсель\Desktop\LittleTetris\LittleTetris\LittleTetris\obj\Debug\Tetris.TetrisForm.resources
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.exe.config
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.exe
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.pdb
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.csprojAssemblyReference.cache
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\Tetris.TetrisForm.resources
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.Properties.Resources.resources
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.csproj.GenerateResource.cache
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.csproj.CoreCompileInputs.cache
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.exe
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.pdb
