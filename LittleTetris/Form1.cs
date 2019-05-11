@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace Tetris
 {
+    //Комментарий для проверки коммита в репозиторий
     public partial class TetrisForm : Form
     {     
         //Width и height Это количество клеток, которое вмещает в себя поле
