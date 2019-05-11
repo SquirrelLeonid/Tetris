@@ -1,0 +1,9 @@
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.exe.config
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.exe
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\bin\Debug\LittleTetris.pdb
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.TetrisForm.resources
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.Properties.Resources.resources
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\Tetris.csproj.GenerateResource.cache
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\Tetris.csproj.CoreCompileInputs.cache
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.exe
+C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.pdb
