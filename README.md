@@ -1,3 +1,2 @@
 # Tetris
-This repository was created for tetris
-I'll try to commit some files here
+This repository was created for tetris game
