@@ -1,4 +1,4 @@
-﻿namespace Tetris
+﻿namespace LittleTetris
 {
     partial class TetrisForm
     {
@@ -34,7 +34,7 @@
             this.FieldPictureBox.Location = new System.Drawing.Point(0, 0);
             this.FieldPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.FieldPictureBox.Name = "FieldPictureBox";
-            this.FieldPictureBox.Size = new System.Drawing.Size(300, 390);
+            this.FieldPictureBox.Size = new System.Drawing.Size(240, 390);
             this.FieldPictureBox.TabIndex = 0;
             this.FieldPictureBox.TabStop = false;
             // 
@@ -48,7 +48,7 @@
             // 
             this.ScoreBox.Enabled = false;
             this.ScoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ScoreBox.Location = new System.Drawing.Point(315, 10);
+            this.ScoreBox.Location = new System.Drawing.Point(245, 12);
             this.ScoreBox.Multiline = true;
             this.ScoreBox.Name = "ScoreBox";
             this.ScoreBox.Size = new System.Drawing.Size(190, 60);
