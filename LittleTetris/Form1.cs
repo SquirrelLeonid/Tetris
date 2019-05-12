@@ -9,13 +9,13 @@ namespace LittleTetris
     
     public partial class TetrisForm : Form
     {
+        #region Объявление полей, задание размеров и прочее
         public const int horCellsCount = 15, vertCellsCount = 25, cellSize = 15;
-        //Помещается 14 клеток    
-        // Массив для хранения падающей фигурки. Клетка представляется парой координат
         public int[,] figure = new int[2, 4];   
         public int[,] field = new int[horCellsCount, vertCellsCount];
         public Bitmap background = new Bitmap(cellSize * (horCellsCount + 1), cellSize * (vertCellsCount + 1));
         public readonly GameModel gameModel = new GameModel();
+        #endregion
 
         public TetrisForm()
         {
@@ -23,12 +23,11 @@ namespace LittleTetris
             figure = gameModel.CreateFigure();
         }
 
+        //Пусть остается как есть
         public void FillField()
         {
             Graphics graphics = Graphics.FromImage(background);
-            //Заливка цветом
             graphics.Clear(Color.Black);
-            //Окантовка
             graphics.DrawRectangle(Pens.Red, cellSize - 1, cellSize, (horCellsCount - 1) * cellSize, (vertCellsCount - 1) * cellSize);
             //Покраска приземлившихся фигур
             for (int i = 0; i < horCellsCount; i++)
@@ -52,23 +51,17 @@ namespace LittleTetris
             FieldPictureBox.Image = background; // Обновление состояния окна после отрисовки фигур
         }
 
-        //С этим я разберусь думаю, куда совать потом разберемся
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             if (field[8, 4] == 1)
                 Environment.Exit(0);
-
-            IEnumerable<int> firstEnumerable = Enumerable.Range(0, vertCellsCount);
-            IEnumerable<int> secondEnumerable = Enumerable.Range(0, horCellsCount);
+            IEnumerable<int> lines = Enumerable.Range(0, vertCellsCount);
+            IEnumerable<int> columns = Enumerable.Range(0, horCellsCount);
             //Проходит по всему полю и проверяет заполненность каждой строки, если она заполнена
-            //То добавляется в Enumerable и затем удаляются
-            IEnumerable<int> linqCall = from i in firstEnumerable
-                        where (secondEnumerable.Select(j => field[j, i]).Sum() >= horCellsCount - 1)
-                        select i;
-
-            //for (int i = 0; i < horCellsCount; i++)
-            //    for (int j = 0; j < vertCellsCount; j++)
-
+            //То добавляется в Enumerable и затем строки с этими индексами смещаются
+            IEnumerable<int> linqCall = from i in lines
+                                        where columns.Select(j => field[j, i]).Sum() >= horCellsCount - 1
+                                        select i;
             foreach (int i in linqCall)
             {
                 for (int k = i; k > 1; k--)
@@ -78,7 +71,6 @@ namespace LittleTetris
             Move(0, 1);
         }
 
-        //Вызывается при нажатии кнопки
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //Тут у меня че то с табуляцией 
@@ -110,8 +102,6 @@ namespace LittleTetris
             }
         }
 
-        //TickTimer.Interval - скорость падения при отжатой клавише
-        //Вроде можно тут оставить?
         private void Form1_KeyUp(object sender, KeyEventArgs e) => TickTimer.Interval = 250;
    
         //Возможно вынести в модель?
@@ -134,7 +124,6 @@ namespace LittleTetris
                     figure = gameModel.CreateFigure(); 
                 }
             }
-            //Перерисовка поля
             FillField();
         }
 
