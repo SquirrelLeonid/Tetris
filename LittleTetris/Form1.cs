@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace LittleTetris
 {
@@ -55,14 +56,25 @@ namespace LittleTetris
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             if (field[8, 4] == 1)
-                Environment.Exit(0);              
-            foreach(int i in (from i in Enumerable.Range(0, field.GetLength(1))
-                              where (Enumerable.Range(0, field.GetLength(0))
-                              .Select(j => field[j, i]).Sum() >= horCellsCount - 1) select i)
-                              .ToArray().Take(1)) 
+                Environment.Exit(0);
+
+            IEnumerable<int> firstEnumerable = Enumerable.Range(0, vertCellsCount);
+            IEnumerable<int> secondEnumerable = Enumerable.Range(0, horCellsCount);
+            //Проходит по всему полю и проверяет заполненность каждой строки, если она заполнена
+            //То добавляется в Enumerable и затем удаляются
+            IEnumerable<int> linqCall = from i in firstEnumerable
+                        where (secondEnumerable.Select(j => field[j, i]).Sum() >= horCellsCount - 1)
+                        select i;
+
+            //for (int i = 0; i < horCellsCount; i++)
+            //    for (int j = 0; j < vertCellsCount; j++)
+
+            foreach (int i in linqCall)
+            {
                 for (int k = i; k > 1; k--)
                     for (int l = 1; l < horCellsCount; l++)
                         field[l, k] = field[l, k - 1];
+            }
             Move(0, 1);
         }
 
