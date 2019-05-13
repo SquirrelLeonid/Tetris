@@ -26,6 +26,8 @@
             this.FieldPictureBox = new System.Windows.Forms.PictureBox();
             this.TickTimer = new System.Windows.Forms.Timer(this.components);
             this.ScoreBox = new System.Windows.Forms.TextBox();
+            this.IterationCounter = new System.Windows.Forms.TextBox();
+            this.IterationLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FieldPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,11 +57,31 @@
             this.ScoreBox.TabIndex = 1;
             this.ScoreBox.Text = "Ваш счет: ";
             // 
+            // IterationCounter
+            // 
+            this.IterationCounter.AcceptsReturn = true;
+            this.IterationCounter.Enabled = false;
+            this.IterationCounter.Location = new System.Drawing.Point(89, 483);
+            this.IterationCounter.Name = "IterationCounter";
+            this.IterationCounter.Size = new System.Drawing.Size(58, 20);
+            this.IterationCounter.TabIndex = 2;
+            // 
+            // IterationLabel
+            // 
+            this.IterationLabel.AutoSize = true;
+            this.IterationLabel.Location = new System.Drawing.Point(13, 486);
+            this.IterationLabel.Name = "IterationLabel";
+            this.IterationLabel.Size = new System.Drawing.Size(70, 13);
+            this.IterationLabel.TabIndex = 3;
+            this.IterationLabel.Text = "Итерация №";
+            // 
             // TetrisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 511);
+            this.Controls.Add(this.IterationLabel);
+            this.Controls.Add(this.IterationCounter);
             this.Controls.Add(this.ScoreBox);
             this.Controls.Add(this.FieldPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -80,6 +102,8 @@
         private System.Windows.Forms.PictureBox FieldPictureBox;
         private System.Windows.Forms.Timer TickTimer;
         private System.Windows.Forms.TextBox ScoreBox;
+        private System.Windows.Forms.TextBox IterationCounter;
+        private System.Windows.Forms.Label IterationLabel;
     }
 }
 

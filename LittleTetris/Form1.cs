@@ -10,34 +10,38 @@ namespace LittleTetris
     public partial class TetrisForm : Form
     {
         #region Объявление полей, задание размеров и прочее
-        public const int horCellsCount = 15, vertCellsCount = 25, cellSize = 15;
+        public const int width = 15, height = 25, cellSize = 15;
+        private int currentIteration = 0;
         public int[,] figure = new int[2, 4];   
-        public int[,] field = new int[horCellsCount, vertCellsCount];
-        public Bitmap background = new Bitmap(cellSize * (horCellsCount + 1), cellSize * (vertCellsCount + 1));
+        public int[,] field = new int[width, height];
+        public Bitmap background = new Bitmap(cellSize * (width + 1), cellSize * (height + 1));
         public readonly GameModel gameModel = new GameModel();
         #endregion
 
+        public static bool[,] field2 = new bool[width, height]; //Изначально заполненно false-ми, static для доступа извне
         public TetrisForm()
         {
             InitializeComponent();            
             figure = gameModel.CreateFigure();
-        }
+        } //Самая первая фигура создается здесь
 
         //Пусть остается как есть
         public void FillField()
         {
             Graphics graphics = Graphics.FromImage(background);
             graphics.Clear(Color.Black);
-            graphics.DrawRectangle(Pens.Red, cellSize - 1, cellSize, (horCellsCount - 1) * cellSize, (vertCellsCount - 1) * cellSize);
+            graphics.DrawRectangle(Pens.Red, cellSize - 1, cellSize, (width - 1) * cellSize, (height - 1) * cellSize);
             //Покраска приземлившихся фигур
-            for (int i = 0; i < horCellsCount; i++)
-                for (int j = 0; j < vertCellsCount; j++)                    
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    if (field[i,j] == 1) // избавляет от проблемы с закрашиванием всего поля
                     graphics.FillRectangle(
                         Brushes.Green,
                         i * cellSize,
                         j * cellSize,
-                        (cellSize - 1) * field[i, j], //Для зазоров
-                        (cellSize - 1) * field[i, j]); // Для зазоров
+                        (cellSize - 1) * 1, //Для зазоров
+                        (cellSize - 1) * 1); // пофакту, оно красит все поле, но там где
+            //клеток нет, получаются зеленые вырожденные квадраты. Если заменить на просто 1, то закрасится все
 
             //Покраска падающих фигур
             for (int i = 0; i < 4; i++)
@@ -55,20 +59,10 @@ namespace LittleTetris
         {
             if (field[8, 4] == 1)
                 Environment.Exit(0);
-            IEnumerable<int> lines = Enumerable.Range(0, vertCellsCount);
-            IEnumerable<int> columns = Enumerable.Range(0, horCellsCount);
-            //Проходит по всему полю и проверяет заполненность каждой строки, если она заполнена
-            //То добавляется в Enumerable и затем строки с этими индексами смещаются
-            IEnumerable<int> linqCall = from i in lines
-                                        where columns.Select(j => field[j, i]).Sum() >= horCellsCount - 1
-                                        select i;
-            foreach (int i in linqCall)
-            {
-                for (int k = i; k > 1; k--)
-                    for (int l = 1; l < horCellsCount; l++)
-                        field[l, k] = field[l, k - 1];
-            }
+            DestroyFilledLines();
             Move(0, 1);
+            IterationCounter.Text = currentIteration++.ToString();
+            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -101,9 +95,25 @@ namespace LittleTetris
                 break;
             }
         }
-
         private void Form1_KeyUp(object sender, KeyEventArgs e) => TickTimer.Interval = 250;
    
+
+        public void DestroyFilledLines()
+        {
+            IEnumerable<int> lines = Enumerable.Range(0, height);
+            IEnumerable<int> columns = Enumerable.Range(0, width);
+            //Проходит по всему полю и проверяет заполненность каждой строки, если она заполнена
+            //То добавляется в Enumerable и затем строки с этими индексами смещаются
+            IEnumerable<int> linqCall = from i in lines
+                                        where columns.Select(j => field[j, i]).Sum() >= width - 1
+                                        select i;
+            foreach (int i in linqCall)
+            {
+                for (int k = i; k > 1; k--)
+                    for (int l = 1; l < width; l++)
+                        field[l, k] = field[l, k - 1];
+            }
+        }
         //Возможно вынести в модель?
         public new void Move(int xSpeed, int ySpeed)
         {        
@@ -131,8 +141,8 @@ namespace LittleTetris
         {
             for (int i = 0; i < 4; i++)
                 //Первые четыре строки - выход за границы, последняя - наложение
-                if (figure[1, i] == horCellsCount
-                    || figure[0, i] == vertCellsCount
+                if (figure[1, i] == width
+                    || figure[0, i] == height
                     || figure[1, i] == 0
                     || figure[0, i] == 0
                     || field[figure[1, i], figure[0, i]] == 1)

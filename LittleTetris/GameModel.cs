@@ -8,6 +8,7 @@ namespace LittleTetris
     public class GameModel
     {
         public readonly int ScoreCount = 10;
+        //Этот метод потом уберется. Пока что он нужен для того чтобы код запускался
         public int[,] CreateFigure()
         {
             Random x = new Random();
@@ -40,62 +41,79 @@ namespace LittleTetris
             T = 6 // Т-образная
         }
         public bool IsFallen;
-        public List<Point> Coordinates;
+        public List<Point> CellsCoordinates;
+
         public Figure()
         {
-            Coordinates = new List<Point>(4);
+            CellsCoordinates = new List<Point>(4);
             Figures type = (Figures)new Random().Next(7);
             #region Блок If-ов
             if (type == Figures.O)
             {
-                Coordinates.Add(new Point(7,3));
-                Coordinates.Add(new Point(7,3));
-                Coordinates.Add(new Point(8,2));
-                Coordinates.Add(new Point(8,3));              
+                CellsCoordinates.Add(new Point(7,3));
+                CellsCoordinates.Add(new Point(7,3));
+                CellsCoordinates.Add(new Point(8,2));
+                CellsCoordinates.Add(new Point(8,3));              
             }             
             if (type == Figures.I)
             {
-                Coordinates.Add(new Point(7, 2));
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(7, 5));
+                CellsCoordinates.Add(new Point(7, 2));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(7, 5));
             }
             if (type == Figures.J)
             {
-                Coordinates.Add(new Point(7, 2));
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(8, 4));
+                CellsCoordinates.Add(new Point(7, 2));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(8, 4));
             }
             if (type == Figures.L)
             {
-                Coordinates.Add(new Point(7, 2));
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(6, 4));
+                CellsCoordinates.Add(new Point(7, 2));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(6, 4));
             }
             if (type == Figures.Z)
             {
-                Coordinates.Add(new Point(6, 3));
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(8, 4));
+                CellsCoordinates.Add(new Point(6, 3));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(8, 4));
             }
             if (type == Figures.S)
             {
-                Coordinates.Add(new Point(8, 3));
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(6, 4));
+                CellsCoordinates.Add(new Point(8, 3));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(6, 4));
             }
             if (type == Figures.T)
             {
-                Coordinates.Add(new Point(7, 3));
-                Coordinates.Add(new Point(6, 4));
-                Coordinates.Add(new Point(7, 4));
-                Coordinates.Add(new Point(8, 4 ));
+                CellsCoordinates.Add(new Point(7, 3));
+                CellsCoordinates.Add(new Point(6, 4));
+                CellsCoordinates.Add(new Point(7, 4));
+                CellsCoordinates.Add(new Point(8, 4 ));
             }
             #endregion
+        }
+
+        //Здесь не будет проверки на столкновение с другой фигурой
+        //Метод выполняет только 2 функции: двигает фигуру вниз если она не упала.
+        //Проверка на то, что фигура достигла дна будет в другом месте. Если условие этой проверки
+        //Соблюдается (Фигура достигла дна), то полю IsFallen присваивается True
+        public void MoveDown()
+        {
+            if (!IsFallen) //Если фигура не упала
+            {               
+                for (int i = 0; i < 4; i++) //Все фигуры из 4 клеток
+                {
+                    Point cell = CellsCoordinates[i];
+                    CellsCoordinates[i] = new Point(cell.X, cell.Y + 1);
+                }
+            }
         }
     }
 }
