@@ -19,11 +19,11 @@ namespace LittleTetris
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
-        {            
+        {
+            IterationCounter.Text = currentIteration++.ToString();
             GameModel.figure.MoveDown(); // Вызываем метод, в результате которого фигура опускается
             GameModel.lineChecker.FindFilledLines(); //Находим и уничтожаем заполненные линии если такие есть
-            FillField(); //После падения и уничтожения заполненных линий перерисовываем
-            IterationCounter.Text = currentIteration++.ToString();
+            FillField(); //После падения и уничтожения заполненных линий перерисовываем           
             GameModel.lineChecker.IsTooHigh();
         }
 
