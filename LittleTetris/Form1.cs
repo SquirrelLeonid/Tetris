@@ -3,18 +3,22 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Media;
 
 namespace LittleTetris
 {
     
     public partial class TetrisForm : Form
     {
+        SoundPlayer sound = new SoundPlayer(@"C:\Tetris.wav");
         private int currentIteration = 0;
         public Bitmap background;
-
+        public PictureBox picture;
         public TetrisForm()
         {
             InitializeComponent();
+            sound.Load();
+            sound.Play();
             background = new Bitmap(GameModel.cellSize * (GameModel.width + 1), GameModel.cellSize * (GameModel.height + 1));
         }
 

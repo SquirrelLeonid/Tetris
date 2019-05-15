@@ -39,3 +39,13 @@ C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.cspro
 C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.exe
 C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.pdb
 C:\Users\Марсель\Desktop\Tetris\LittleTetris\obj\Debug\LittleTetris.TetrisForm.resources
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\bin\Debug\LittleTetris.exe.config
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\bin\Debug\LittleTetris.exe
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\bin\Debug\LittleTetris.pdb
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.csprojResolveAssemblyReference.cache
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.TetrisForm.resources
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.Properties.Resources.resources
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.csproj.GenerateResource.Cache
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.csproj.CoreCompileInputs.cache
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.exe
+C:\Users\Максим\Documents\GitHub\Tetris\LittleTetris\obj\Debug\LittleTetris.pdb
