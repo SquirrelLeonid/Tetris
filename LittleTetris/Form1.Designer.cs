@@ -55,7 +55,7 @@
             this.ScoreBox.Name = "ScoreBox";
             this.ScoreBox.Size = new System.Drawing.Size(190, 60);
             this.ScoreBox.TabIndex = 1;
-            this.ScoreBox.Text = "Ваш счет: ";
+            this.ScoreBox.Text = "Ваш счет: " + GameModel.scores;
             // 
             // IterationCounter
             // 

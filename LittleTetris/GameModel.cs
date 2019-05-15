@@ -13,6 +13,8 @@ namespace LittleTetris
         public static readonly bool[,] field = new bool[width, height];
         public static Figure figure = new Figure();
         public static LineChecker lineChecker = new LineChecker();
+        public static int scores = 0; //очки за игру
+
 
         public class Figure
         {
@@ -191,6 +193,7 @@ namespace LittleTetris
                     for (int i = 0; i < width; i++)
                         field[line, i] = field[line - 1, i]; //Нижнюю строку заменяем верхней поэлементно.
                 }
+                scores += 100;
             }
         }
         
