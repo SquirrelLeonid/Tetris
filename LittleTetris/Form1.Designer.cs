@@ -32,6 +32,7 @@
             this.LinesCount = new System.Windows.Forms.Label();
             this.Lines = new System.Windows.Forms.TextBox();
             this.BackGround = new System.Windows.Forms.PictureBox();
+            this.PauseLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BackGround)).BeginInit();
             this.SuspendLayout();
@@ -115,11 +116,26 @@
             this.BackGround.TabIndex = 8;
             this.BackGround.TabStop = false;
             // 
+            // PauseLabel
+            // 
+            this.PauseLabel.AutoSize = true;
+            this.PauseLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PauseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PauseLabel.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.PauseLabel.Image = global::LittleTetris.Properties.Resources.BackGround;
+            this.PauseLabel.Location = new System.Drawing.Point(139, 203);
+            this.PauseLabel.Name = "PauseLabel";
+            this.PauseLabel.Size = new System.Drawing.Size(92, 31);
+            this.PauseLabel.TabIndex = 9;
+            this.PauseLabel.Text = "Пауза";
+            this.PauseLabel.Visible = false;
+            // 
             // TetrisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 561);
+            this.Controls.Add(this.PauseLabel);
             this.Controls.Add(this.Lines);
             this.Controls.Add(this.LinesCount);
             this.Controls.Add(this.Score);
@@ -153,6 +169,7 @@
         private System.Windows.Forms.Label LinesCount;
         private System.Windows.Forms.TextBox Lines;
         private System.Windows.Forms.PictureBox BackGround;
+        private System.Windows.Forms.Label PauseLabel;
     }
 }
 

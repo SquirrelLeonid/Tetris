@@ -88,8 +88,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Source\BackGround.png" />
-    <Content Include="Source\GameOver.wav" />
-    <Content Include="Source\MainTheme.wav" />
+    <Content Include="Source\Sound\MainTheme.wav" />
     <Content Include="Source\tetris.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
