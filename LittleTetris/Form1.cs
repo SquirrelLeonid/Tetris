@@ -1,46 +1,37 @@
 ﻿using System;
-using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Media;
 
 namespace LittleTetris
-{
-    
+{  
     public partial class TetrisForm : Form
     {
-        //SoundPlayer sound = new SoundPlayer(@"C:\Tetris.wav");
         private int currentIteration = 0;
-        public Bitmap background;
+        private Bitmap gameField;
+        public SoundMaster soundMaster; 
+        
+       
         public TetrisForm()
         {
-            InitializeComponent();
-            //sound.Load();
-            //sound.Play();
-            background = new Bitmap(Constants.cellSize * (Constants.width + 1), Constants.cellSize * (Constants.height + 1));
+            InitializeComponent();        
+            gameField = new Bitmap(Constants.cellSize * (Constants.width + 1), Constants.cellSize * (Constants.height + 1));
+            soundMaster = new SoundMaster();          
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             IterationCounter.Text = currentIteration++.ToString();
-            GameModel.lineChecker.IsTooHigh();            
-            GameModel.lineChecker.FindFilledLines(); //Находим и уничтожаем заполненные линии если такие есть
-            UpdateData();
+            LineChecker.IsTooHigh();            
+            LineChecker.FindFilledLines(); //Находим и уничтожаем заполненные линии если такие есть            
             GameModel.figure.MoveDown();
+            UpdateData();
             FillField(); //После падения и уничтожения заполненных линий перерисовываем             
         }
 
         private void FillField()
         {
-            Graphics graphics = Graphics.FromImage(background);
+            Graphics graphics = Graphics.FromImage(gameField);
             graphics.Clear(Color.Black);
-            graphics.DrawRectangle(
-                Pens.Red,
-                Constants.cellSize - 1,
-                Constants.cellSize,
-                (Constants.width- 1) * Constants.cellSize,
-                (Constants.height - 1) * Constants.cellSize);
             //Покраска приземлившихся фигур
             for (int i = 0; i < Constants.width; i++)
                 for (int j = 0; j < Constants.height; j++)
@@ -63,7 +54,7 @@ namespace LittleTetris
                     Constants.cellSize - 1); //Для зазоров
             }
 
-            FieldPictureBox.Image = background; // Обновление состояния окна после отрисовки фигур
+            GameField.Image = gameField; // Обновление состояния окна после отрисовки фигур
         }
 
         private void UpdateData()
