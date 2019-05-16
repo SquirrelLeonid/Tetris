@@ -79,6 +79,7 @@ namespace LittleTetris
                 case Keys.S: TickTimer.Interval = 50; break;
                 case Keys.A: GameModel.figure.MoveSide(-1); break;
                 case Keys.D: GameModel.figure.MoveSide(1); break;
+                case Keys.W: GameModel.figure.Rotate(); break;
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e) => TickTimer.Interval = 250;             

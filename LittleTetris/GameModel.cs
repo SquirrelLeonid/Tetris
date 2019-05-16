@@ -78,8 +78,8 @@ namespace LittleTetris
                 if (type == Figures.T)
                 {
                     CellsCoordinates.Add(new Point(7, 3));
-                    CellsCoordinates.Add(new Point(6, 4));
                     CellsCoordinates.Add(new Point(7, 4));
+                    CellsCoordinates.Add(new Point(6, 4));                  
                     CellsCoordinates.Add(new Point(8, 4));
                 }
                 #endregion
@@ -96,6 +96,19 @@ namespace LittleTetris
                 }
             }
 
+            public void Rotate()
+            {
+                Point center = CellsCoordinates[1];
+                Point cell;
+                for (int i = 0; i < 4; i++)
+                {
+                    cell = CellsCoordinates[i];
+                    int dx = cell.Y - center.Y;
+                    int dy = cell.X - center.X;
+                    cell.X = center.X - dx;
+                    cell.Y = center.Y + dy;
+                }
+            }
             public void MoveDown()
             {
                 if (IsFigureFall())
