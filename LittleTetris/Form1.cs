@@ -8,7 +8,7 @@ namespace LittleTetris
     {
         private int currentIteration = 0;
         private Bitmap gameField;
-        public SoundMaster soundMaster;
+        //public SoundMaster soundMaster;
         private bool pause = false;
         
        
@@ -16,7 +16,7 @@ namespace LittleTetris
         {
             InitializeComponent();        
             gameField = new Bitmap(Constants.cellSize * (Constants.width + 1), Constants.cellSize * (Constants.height + 1));
-            soundMaster = new SoundMaster();          
+            //soundMaster = new SoundMaster();          
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
