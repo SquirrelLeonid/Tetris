@@ -8,6 +8,7 @@ namespace LittleTetris
     {
         private int currentIteration = 0;
         private Bitmap gameField;
+        Graphics graphics;
         public SoundMaster soundMaster;
         private bool pause = false;
         
@@ -16,7 +17,7 @@ namespace LittleTetris
         {
             InitializeComponent();        
             gameField = new Bitmap(Constants.cellSize * (Constants.width + 1), Constants.cellSize * (Constants.height + 1));
-
+            graphics = Graphics.FromImage(gameField);
             soundMaster = new SoundMaster();          
         }
 
@@ -35,7 +36,7 @@ namespace LittleTetris
 
         private void FillField()
         {
-            Graphics graphics = Graphics.FromImage(gameField);
+            
             graphics.Clear(Color.Black);
             //Покраска приземлившихся фигур
             for (int i = 0; i < Constants.width; i++)
@@ -80,7 +81,7 @@ namespace LittleTetris
                 case Keys.S: TickTimer.Interval = 50; break;
                 case Keys.A: GameModel.figure.MoveSide(-1); FillField(); break;
                 case Keys.D: GameModel.figure.MoveSide(1); FillField(); break;
-                case Keys.W: GameModel.figure.Rotate(); break;
+                case Keys.W: GameModel.figure.Rotate();  break;
                 case Keys.P:
                     {
                         if (!pause)

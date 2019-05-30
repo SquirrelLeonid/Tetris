@@ -9,11 +9,8 @@ namespace LittleTetris
         public static void IsTooHigh()
         {
             for (int i = 0; i < Constants.width; i++)
-                if (GameModel.field[i, 3])
-                {
-                    
+                if (GameModel.field[i, 3])             
                     Environment.Exit(0);
-                }
         }
 
         public static void FindFilledLines()

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LittleTetris
 {
@@ -19,11 +16,11 @@ namespace LittleTetris
             T = 6 // Т-образная
         }
         public List<Point> CellsCoordinates;
-
+        private readonly Figures type;
         public Figure()
         {
             CellsCoordinates = new List<Point>(4);
-            Figures type = (Figures)new Random().Next(7);
+            type = (Figures)new Random().Next(7);
             #region Блок If-ов
             if (type == Figures.O)
             {
@@ -90,15 +87,23 @@ namespace LittleTetris
 
         public void Rotate()
         {
-            Point center = CellsCoordinates[1];
-            Point cell;
-            for (int i = 0; i < 4; i++)
+            //Если это не квадрат
+            if (GameModel.figure.type != 0)
             {
-                cell = CellsCoordinates[i];
-                int dx = cell.Y - center.Y;
-                int dy = cell.X - center.X;
-                cell.X = center.X - dx;
-                cell.Y = center.Y + dy;
+                Point center = CellsCoordinates[1];
+                Point cell;
+                for (int i = 0; i < 4; i++)
+                {
+                    cell = CellsCoordinates[i];
+                    int dx = center.X - cell.Y + center.Y;
+                    int dy = center.Y + cell.X - center.X;
+                    if (dx < 0 || dx >= Constants.width || dy >= Constants.height)
+                        return;
+                    else if (GameModel.field[dx, dy])
+                        return;
+                    cell.X = dx;
+                    cell.Y = dy;
+                }
             }
         }
 

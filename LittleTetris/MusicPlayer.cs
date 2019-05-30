@@ -1,4 +1,5 @@
 ﻿using System.Media;
+using System;
 namespace LittleTetris
 {
     public class SoundMaster
@@ -7,9 +8,10 @@ namespace LittleTetris
 
         public SoundMaster()
         {
+            var a = Environment.CurrentDirectory;
             player = new SoundPlayer(@"C:\Users\Марсель\Desktop\Tetris\LittleTetris\Source\Sound\MainTheme.wav");
             player.Load();
-            player.PlayLooping();
+            //player.PlayLooping();
         }
 
         public void MakePause()
